@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบขอซื้อ/ขอจ้าง - MORTAR DESIGN&CONSTRUCTION CO.,LTD.</title>
+    <style>
+body {
+            font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .form-number {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            flex: 1;
+            margin-right: 15px;
+        }
+        .form-group:last-child {
+            margin-right: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .items-table th,
+        .items-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        .items-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .add-item-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .signature-box {
+            width: 30%;
+            text-align: center;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            margin-top: 60px;
+            padding-top: 5px;
+        }
+        .submit-btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+</head>
+<body>
+    <form action="https://n8n.mortar.co.in/webhook/purchase-request" method="POST">
+    <div class="form-container">
+        <div class="header">
+            <div class="company-name">บริษัท มอร์ต้าร์ ดีไซน์ แอนด์ คอนสตรัคชั่น จำกัด</div>
+            <div class="company-name">MORTAR DESIGN&CONSTRUCTION CO.,LTD.</div>
+            <div class="form-title">ใบขอซื้อ/ขอจ้าง</div>
+            <div class="form-title">PURCHASE REQUISITION</div>
+            <div class="form-number">เลขที่/PR.NO.: <input type="text" id="pr-number" name="pr-number" style="width: 150px;"></div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">ข้อมูลทั่วไป</div>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="project-name">โครงการ</label>
+                    <input type="text" id="project-name" name="project-name" value="ก่อสร้างโรงเรือนสกรคลอด สกลนคร">
+                </div>
+                <div class="form-group">
+                    <label for="project-code">รหัสโครงการ</label>
+                    <input type="text" id="project-code" name="project-code" value="J27">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pr-date">วันที่</label>
+                    <input type="date" id="pr-date" name="pr-date" value="2025-04-19">
+                </div>
+                <div class="form-group">
+                    <label for="required-date">วันที่ต้องการใช้</label>
+                    <input type="date" id="required-date" name="required-date" value="2025-04-25">
+                </div>
+                <div class="form-group">
+                    <label for="effective-date">Effective date</label>
+                    <input type="date" id="effective-date" name="effective-date" value="2025-01-17">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="recommended-vendor">ผู้ขายที่แนะนำ</label>
+                    <input type="text" id="recommended-vendor" name="recommended-vendor">
+                </div>
+                <div class="form-group">
+                    <label for="usage-zone">โซนที่ใช้งาน</label>
+                    <select id="usage-zone" name="usage-zone">
+                        <option value="F10" selected>F10</option>
+                        <option value="F1">F1</option>
+                        <option value="Other">อื่นๆ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="calculation-file">รายการคำนวณอยู่ในไฟล์คิดราคาใหม่</label>
+                    <input type="text" id="calculation-file" name="calculation-file">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="notes">หมายเหตุ/วัตถุประสงค์</label>
+                    <textarea id="notes" name="notes"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">รายการวัสดุ</div>
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th width="5%">ลำดับ</th>
+                        <th width="35%">รายการ</th>
+                        <th width="15%">จำนวน/หน่วย</th>
+                        <th width="15%">ราคา/หน่วย</th>
+                        <th width="15%">โซน</th>
+                        <th width="15%">หมายเหตุ</th>
+                    </tr>
+                </thead>
+                                <tbody id="items-body">
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="item1-name" value="คอนกรีตหยาบ"></td>
+                        <td><input type="text" name="item1-qty" value="32.78 คิว"></td>
+                        <td><input type="text" name="item1-price"></td>
+                        <td><select name="item1-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item1-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="item2-name" value="คอนกรีตฐานราก"></td>
+                        <td><input type="text" name="item2-qty" value="24.24 คิว"></td>
+                        <td><input type="text" name="item2-price"></td>
+                        <td><select name="item2-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item2-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="item3-name" value="คอนกรีตคาน"></td>
+                        <td><input type="text" name="item3-qty" value="22.32 คิว"></td>
+                        <td><input type="text" name="item3-price"></td>
+                        <td><select name="item3-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item3-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="item4-name" value="คอนกรีตรางระบายน้ำ + พื้นด้านนอก"></td>
+                        <td><input type="text" name="item4-qty" value="18.38 คิว"></td>
+                        <td><input type="text" name="item4-price"></td>
+                        <td><select name="item4-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item4-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" name="item5-name" value="คอนกรีตเสา"></td>
+                        <td><input type="text" name="item5-qty" value="11.28 คิว"></td>
+                        <td><input type="text" name="item5-price"></td>
+                        <td><select name="item5-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item5-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><input type="text" name="item6-name" value="คอนกรีตพื้นภายใน"></td>
+                        <td><input type="text" name="item6-qty" value="258.73 คิว"></td>
+                        <td><input type="text" name="item6-price"></td>
+                        <td><select name="item6-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item6-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><input type="text" name="item7-name" value="คอนกรีตทางลาด"></td>
+                        <td><input type="text" name="item7-qty" value="4 คิว"></td>
+                        <td><input type="text" name="item7-price"></td>
+                        <td><select name="item7-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item7-notes"></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><input type="text" name="item8-name" value="คอนกรีตคานงานเพิ่ม"></td>
+                        <td><input type="text" name="item8-qty" value="18.5 คิว"></td>
+                        <td><input type="text" name="item8-price"></td>
+                        <td><select name="item8-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                        <td><input type="text" name="item8-notes"></td>
+                    </tr>
+                    </tbody>
+            </table>
+            <button type="button" class="add-item-btn" onclick="addItem()">เพิ่มรายการ</button>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">รายละเอียดงาน</div>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="work-details">งานฐานราก/งานเสา/งานคาน/งานพื้น (สามารถเพิ่มตารางตามเอกสารแนบ)</label>
+                    <textarea id="work-details" name="work-details" style="height: 150px;"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <div>ผู้ขอซื้อ</div>
+                <div class="signature-line"></div>
+                <div>(ลงชื่อ).............................................</div>
+                <div>วันที่...../...../......</div>
+            </div>
+            <div class="signature-box">
+                <div>จัดซื้อ</div>
+                <div class="signature-line"></div>
+                <div>(ลงชื่อ).............................................</div>
+                <div>วันที่...../...../......</div>
+            </div>
+            <div class="signature-box">
+                <div>ผู้อนุมัติซื้อ</div>
+                <div class="signature-line"></div>
+                <div>(ลงชื่อ).............................................</div>
+                <div>วันที่...../...../......</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="submit-btn">ส่งใบขอซื้อ/ขอจ้าง</button>
+        </div>
+    </div>
+    </form>
+
+    <script>
+        let itemCount = 8;
+        function addItem() {
+            itemCount++;
+            const tbody = document.getElementById('items-body');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${itemCount}</td>
+                <td><input type="text" name="item${itemCount}-name"></td>
+                <td><input type="text" name="item${itemCount}-qty"></td>
+                <td><input type="text" name="item${itemCount}-price"></td>
+                <td><select name="item${itemCount}-zone"><option value="F10" selected>F10</option><option value="F1">F1</option></select></td>
+                <td><input type="text" name="item${itemCount}-notes"></td>
+            `;
+            tbody.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
